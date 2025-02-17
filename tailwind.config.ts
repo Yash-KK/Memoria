@@ -12,6 +12,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        bubblegum: ['Bubblegum Sans', 'sans-serif'],
+      },
     },
   },
   plugins: [],
