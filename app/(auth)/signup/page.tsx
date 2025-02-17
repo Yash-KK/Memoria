@@ -7,7 +7,6 @@ export default function SignUp() {
       <div className="flex bg-slate-500 h-screen justify-center items-center">
         Welcome Quote
       </div>
-
     </div>
   );
 }
