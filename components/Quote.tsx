@@ -1,3 +1,5 @@
+import QuoteTitle from "./QuoteTitle";
+
 type QuoteProps = {
   text: string;
   size: "md" | "lg";
@@ -10,7 +12,7 @@ const TextSizeVariants = {
 const Quote: React.FC<QuoteProps> = ({ text, size }) => {
   return (
     <div className="flex bg-pink-700 h-screen justify-center items-center flex-col">
-      <div className="font-bubblegum text-gray-900 text-9xl">Memoria</div>
+      <QuoteTitle title="Memoria" font="bubble" />
       <div className={`font-mono ${TextSizeVariants[size]} text-center`}>
         {text}
       </div>
