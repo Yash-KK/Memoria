@@ -1,24 +1,17 @@
-import React from "react";
+import { FontWeightVariants, TextSizeVariants } from "./variants";
 
 type LabelProps = {
+  onLeft?: React.ReactNode;
+  onRight?: React.ReactNode;
   text: string;
   textSize: "md" | "sm" | "xl" | "2xl" | "4xl";
-  fontWeight: "medium" | "bold";
+  fontWeight: "medium" | "bold" | "semi-bold";
   className?: string;
 };
 
-const LabelTextSize = {
-  sm: "text-sm",
-  md: "text-md",
-  xl: "text-xl",
-  "2xl": "text-2xl",
-  "4xl": "text-4xl",
-};
-const LabelFontWeight = {
-  medium: "font-medium",
-  bold: "folt-bold",
-};
 const Label: React.FC<LabelProps> = ({
+  onLeft,
+  onRight,
   text,
   textSize,
   fontWeight,
@@ -26,9 +19,11 @@ const Label: React.FC<LabelProps> = ({
 }) => {
   return (
     <label
-      className={`block mb-2 ${LabelTextSize[textSize]} ${LabelFontWeight[fontWeight]} text-white ${className}`}
+      className={`flex items-center block mb-2 ${TextSizeVariants[textSize]} ${FontWeightVariants[fontWeight]} text-white ${className}`}
     >
+      <div className="mr-1">{onLeft}</div>
       {text}
+      <div className="ml-1">{onRight}</div>
     </label>
   );
 };

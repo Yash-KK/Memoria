@@ -8,6 +8,6 @@ export default function SignUp() {
         text={`Memories don’t just make themselves… Well, actually, they do. But storing them? That’s where we come in. Welcome to Memoria!`}
         size="md"
       />
-     </div>
+    </div>
   );
 }
