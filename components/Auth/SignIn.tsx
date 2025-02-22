@@ -44,7 +44,7 @@ const SignIn: React.FC = () => {
               backgroundColor="medium-gray"
             />
             <p className="text-sm font-light text-gray-400">
-              Don't have an account?{" "}
+              {`Don't have an account?`}
               <Link
                 href="/signup"
                 className="font-medium hover:underline text-primary-500"
