@@ -3,6 +3,7 @@ type InputBoxProps = {
   name: string;
   placeholder: string;
   required?: boolean;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
 const InputBox: React.FC<InputBoxProps> = ({
@@ -10,9 +11,11 @@ const InputBox: React.FC<InputBoxProps> = ({
   name,
   placeholder,
   required,
+  onChange,
 }) => {
   return (
     <input
+      onChange={onChange}
       type={type}
       name={name}
       placeholder={placeholder}
