@@ -3,7 +3,7 @@ type InputBoxProps = {
   name: string;
   placeholder: string;
   required?: boolean;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 };
 
 const InputBox: React.FC<InputBoxProps> = ({
