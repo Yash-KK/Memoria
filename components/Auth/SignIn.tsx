@@ -1,10 +1,31 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Link from "next/link";
 import Label from "../ui/Label";
 import InputBox from "../ui/InputBox";
 import { SignInIcon } from "../icons";
 import Button from "../ui/Button";
+import { signIn } from "next-auth/react";
+
 const SignIn: React.FC = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const response = await signIn("credentials", formData);
+    console.log("response: ", response);
+  };
   return (
     <div className="flex justify-center items-center flex-col h-screen bg-gray-800">
       <Label
@@ -17,10 +38,11 @@ const SignIn: React.FC = () => {
 
       <div className="w-full rounded-lg shadow-2xl border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">
         <div className="md:space-y-6 sm:p-8">
-          <form className="space-y-4 md:space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
             <div>
               <Label text="Email" textSize="sm" fontWeight="medium" />
               <InputBox
+                onChange={handleChange}
                 type="email"
                 name="email"
                 placeholder="theRoshan@gmail.com"
@@ -30,8 +52,9 @@ const SignIn: React.FC = () => {
             <div>
               <Label text="Password" textSize="sm" fontWeight="medium" />
               <InputBox
+                onChange={handleChange}
                 type="password"
-                name="Password"
+                name="password"
                 placeholder="*********"
                 required
               />
