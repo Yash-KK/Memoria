@@ -1,19 +1,20 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
-
+import { signOut } from "next-auth/react";
 const Page = () => {
-  const { status } = useSession({
+  const { data: session, status } = useSession({
     required: true,
     onUnauthenticated() {
-      redirect("/api/auth/signin");
+      redirect("signin");
     },
   });
   if (status === "loading") {
     return <p>Loading....</p>;
   }
   console.log("Status: ", status);
-  return "Hi";
+  console.log("data: ", session);
+  return <button onClick={() => signOut()}>SignOut</button>;
 };
 
 export default Page;
