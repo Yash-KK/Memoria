@@ -1,7 +1,9 @@
-import SideBar from "@/components/SideBar";
-
 const PlayGround: React.FC = () => {
-  return <SideBar />;
+  return (
+    <>
+      <p>Playground</p>
+    </>
+  );
 };
 
 export default PlayGround;
