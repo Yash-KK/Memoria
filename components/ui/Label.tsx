@@ -7,7 +7,7 @@ type LabelProps = {
   text: string;
   textSize: "md" | "sm" | "xl" | "2xl" | "4xl" | "6xl" | "8xl";
   fontWeight: "medium" | "bold" | "semi-bold";
-  onClick?: any;
+  onClick?: React.MouseEventHandler<HTMLElement>;
   className?: string;
 };
 
