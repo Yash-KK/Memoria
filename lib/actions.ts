@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { SignUpType } from "@/lib/types/zod";
+import { SignUpSchema, SignUpType } from "@/lib/types/zod";
 import { hashPassword } from "@/lib/utils";
 
 export const signUpUser = async ({
@@ -10,6 +10,19 @@ export const signUpUser = async ({
   email,
   password,
 }: SignUpType) => {
+  const validatedInput = SignUpSchema.safeParse({
+    firstName,
+    lastName,
+    email,
+    password,
+  });
+  if (!validatedInput.success) {
+    return {
+      message: "Validation failed",
+      status: false,
+      errors: validatedInput.error.format(),
+    };
+  }
   try {
     const userExists = await prisma.user.findUnique({
       where: {

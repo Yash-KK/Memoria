@@ -9,6 +9,7 @@ import { signIn } from "next-auth/react";
 import { redirect } from "next/navigation";
 
 const SignIn: React.FC = () => {
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,9 +29,8 @@ const SignIn: React.FC = () => {
       ...formData,
       redirect: false,
     });
-    console.log("response: ", response);
     if (response?.error) {
-      alert("wrong...");
+      setError(response.error);
     } else {
       redirect("/");
     }
@@ -68,6 +68,9 @@ const SignIn: React.FC = () => {
                 required
               />
             </div>
+            {error && (
+              <div className="flex items-end text-red-500">{error}</div>
+            )}
             <Button
               type="submit"
               text="Login to your account"
