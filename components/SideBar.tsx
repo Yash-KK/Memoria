@@ -1,6 +1,7 @@
 import React from "react";
 import Label from "./ui/Label";
-import { MemoriaIcon, TweetIcon, VideoIcon } from "./icons";
+import { LogoutIcon, MemoriaIcon, TweetIcon, VideoIcon } from "./icons";
+import { signOut } from "next-auth/react";
 
 const SideBar = () => {
   return (
@@ -12,20 +13,28 @@ const SideBar = () => {
         fontWeight="semi-bold"
         className="text-red-900 font-bubblegum cursor-pointer"
       />
-      <div className="flex flex-col p-3">
+      <div className="flex flex-col p-2">
         <Label
-          onLeft={<TweetIcon />}
+          onLeft={<TweetIcon className="mr-3" />}
           text="Tweets"
           textSize="2xl"
           fontWeight="medium"
           className="text-gray-600 mb-4 cursor-pointer hover:font-bold"
         />
         <Label
-          onLeft={<VideoIcon />}
+          onLeft={<VideoIcon className="mr-3" />}
           text="Videos"
           textSize="2xl"
           fontWeight="medium"
-          className="text-gray-600 cursor-pointer hover:font-bold"
+          className="text-gray-600 mb-4 cursor-pointer hover:font-bold"
+        />
+        <Label
+          onLeft={<LogoutIcon className="mr-3" />}
+          onClick={() => signOut()}
+          text="Logout"
+          textSize="2xl"
+          fontWeight="medium"
+          className="text-gray-600 mb-4 cursor-pointer hover:font-bold"
         />
       </div>
     </div>

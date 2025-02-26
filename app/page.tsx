@@ -2,6 +2,7 @@
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { signOut } from "next-auth/react";
+import SideBar from "@/components/SideBar";
 const Page = () => {
   const { data: session, status } = useSession({
     required: true,
@@ -14,7 +15,7 @@ const Page = () => {
   }
   console.log("Status: ", status);
   console.log("data: ", session);
-  return <button onClick={() => signOut()}>SignOut</button>;
+  return <SideBar />;
 };
 
 export default Page;
