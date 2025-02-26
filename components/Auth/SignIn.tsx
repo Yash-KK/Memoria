@@ -42,14 +42,19 @@ const SignIn: React.FC = () => {
         text="Sign In"
         textSize="2xl"
         fontWeight="semi-bold"
-        className="mb-6"
+        className="text-white mb-6"
       />
 
       <div className="w-full rounded-lg shadow-2xl border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">
         <div className="md:space-y-6 sm:p-8">
           <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
             <div>
-              <Label text="Email" textSize="sm" fontWeight="medium" />
+              <Label
+                text="Email"
+                textSize="sm"
+                fontWeight="medium"
+                className="text-white"
+              />
               <InputBox
                 onChange={handleChange}
                 type="email"
@@ -59,7 +64,12 @@ const SignIn: React.FC = () => {
               />
             </div>
             <div>
-              <Label text="Password" textSize="sm" fontWeight="medium" />
+              <Label
+                text="Password"
+                textSize="sm"
+                fontWeight="medium"
+                className="text-white"
+              />
               <InputBox
                 onChange={handleChange}
                 type="password"

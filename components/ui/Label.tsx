@@ -23,7 +23,7 @@ const Label: React.FC<LabelProps> = ({
   return (
     <label
       onClick={onClick}
-      className={`flex items-center block mb-2 ${TextSizeVariants[textSize]} ${FontWeightVariants[fontWeight]} text-white ${className}`}
+      className={`flex items-center block mb-2 ${TextSizeVariants[textSize]} ${FontWeightVariants[fontWeight]}  ${className}`}
     >
       <div className="mr-1">{onLeft}</div>
       {text}
