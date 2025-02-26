@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import SideBar from "@/components/SideBar";
 const Page = () => {
-  const { data: session, status } = useSession({
+  const { status } = useSession({
     required: true,
     onUnauthenticated() {
       redirect("signin");
@@ -12,9 +12,11 @@ const Page = () => {
   if (status === "loading") {
     return <p>Loading....</p>;
   }
-  console.log("Status: ", status);
-  console.log("data: ", session);
-  return <SideBar />;
+  return (
+    <div className="flex">
+      <SideBar />;
+    </div>
+  );
 };
 
 export default Page;

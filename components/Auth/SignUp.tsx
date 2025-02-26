@@ -45,15 +45,25 @@ const SignUp: React.FC = () => {
         text="Sign Up"
         textSize="2xl"
         fontWeight="semi-bold"
-        className="mb-6"
+        className="mb-6 text-white"
       />
 
       <div className="w-full rounded-lg shadow-2xl border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">
         <div className="md:space-y-6 sm:p-8">
-          <Label text="Create an account" textSize="2xl" fontWeight="bold" />
+          <Label
+            text="Create an account"
+            textSize="2xl"
+            fontWeight="bold"
+            className="text-white"
+          />
           <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
             <div>
-              <Label text="First Name" textSize="sm" fontWeight="medium" />
+              <Label
+                text="First Name"
+                textSize="sm"
+                fontWeight="medium"
+                className="text-white"
+              />
               <InputBox
                 onChange={handleChange}
                 type="text"
@@ -63,7 +73,12 @@ const SignUp: React.FC = () => {
               />
             </div>
             <div>
-              <Label text="Last Name" textSize="sm" fontWeight="medium" />
+              <Label
+                text="Last Name"
+                textSize="sm"
+                fontWeight="medium"
+                className="text-white"
+              />
               <InputBox
                 onChange={handleChange}
                 type="text"
@@ -72,7 +87,12 @@ const SignUp: React.FC = () => {
               />
             </div>
             <div>
-              <Label text="Your email" textSize="sm" fontWeight="medium" />
+              <Label
+                text="Your email"
+                textSize="sm"
+                fontWeight="medium"
+                className="text-white"
+              />
               <InputBox
                 onChange={handleChange}
                 type="email"
@@ -82,7 +102,12 @@ const SignUp: React.FC = () => {
               />{" "}
             </div>
             <div>
-              <Label text="Password" textSize="sm" fontWeight="medium" />
+              <Label
+                text="Password"
+                textSize="sm"
+                fontWeight="medium"
+                className="text-white"
+              />
               <InputBox
                 onChange={handleChange}
                 type="password"
