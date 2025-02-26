@@ -6,6 +6,7 @@ import InputBox from "../ui/InputBox";
 import { SignUpIcon } from "../icons";
 import Button from "../ui/Button";
 import { signUpUser } from "@/lib/actions";
+import { redirect } from "next/navigation";
 const SignUp: React.FC = () => {
   const [loading, setloading] = useState(false);
   const [errors, setErrors] = useState("");
@@ -32,6 +33,8 @@ const SignUp: React.FC = () => {
     const response = await signUpUser(formData);
     if (!response.status) {
       setErrors(response.message);
+    } else {
+      redirect("/signin");
     }
     setloading(false);
   };

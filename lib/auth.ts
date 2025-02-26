@@ -27,7 +27,7 @@ const authOptions: NextAuthOptions = {
         const email = credentials?.email;
         const password = credentials?.password;
         if (!email || !password) {
-          return null;
+          throw new Error("email and password are required");
         }
         const user = await prisma.user.findUnique({
           where: {
@@ -35,23 +35,19 @@ const authOptions: NextAuthOptions = {
           },
         });
         if (!user) {
-          return null;
+          throw new Error("user not found");
         }
 
         if ((await comparePasswod(password, user?.password)) === false) {
-          return null;
+          throw new Error("invalid credentials");
         }
 
-        if (user) {
-          return {
-            id: user.id,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-          };
-        } else {
-          return null;
-        }
+        return {
+          id: user.id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+        };
       },
     }),
   ],
