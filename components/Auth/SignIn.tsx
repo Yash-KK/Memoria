@@ -6,6 +6,7 @@ import InputBox from "../ui/InputBox";
 import { SignInIcon } from "../icons";
 import Button from "../ui/Button";
 import { signIn } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const SignIn: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -23,8 +24,16 @@ const SignIn: React.FC = () => {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await signIn("credentials", formData);
+    const response = await signIn("credentials", {
+      ...formData,
+      redirect: false,
+    });
     console.log("response: ", response);
+    if (response?.error) {
+      alert("wrong...");
+    } else {
+      redirect("/");
+    }
   };
   return (
     <div className="flex justify-center items-center flex-col h-screen bg-gray-800">

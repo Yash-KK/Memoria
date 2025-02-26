@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { SignUpType } from "@/lib/types";
+import { SignUpType } from "@/lib/types/zod";
 import { hashPassword } from "@/lib/utils";
 
 export const signUpUser = async ({

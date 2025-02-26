@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { SignUpSchema, SignUpType } from "@/lib/types";
+import { SignUpSchema, SignUpType } from "@/lib/types/zod";
 import { NextResponse, NextRequest } from "next/server";
 import { hashPassword } from "@/lib/utils";
 

@@ -1,5 +1,7 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { prisma } from "./prisma";
+import { comparePasswod } from "./utils";
 const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
@@ -9,7 +11,6 @@ const authOptions: NextAuthOptions = {
   },
   providers: [
     CredentialsProvider({
-      name: "Credentials",
       credentials: {
         email: {
           label: "Email",
@@ -23,17 +24,48 @@ const authOptions: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
-        console.log("credentials", credentials);
+        const email = credentials?.email;
+        const password = credentials?.password;
+        if (!email || !password) {
+          return null;
+        }
+        const user = await prisma.user.findUnique({
+          where: {
+            email: email,
+          },
+        });
+        if (!user) {
+          return null;
+        }
+
+        if ((await comparePasswod(password, user?.password)) === false) {
+          return null;
+        }
+
         if (user) {
-          return user;
+          return {
+            id: user.id,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+          };
         } else {
           return null;
         }
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user };
+    },
+    async session({ session, token }) {
+      session.user.id = token.id;
+      session.user.firstName = token.firstName;
+      session.user.lastName = token.lastName;
+      return session;
+    },
+  },
 };
 
 export default authOptions;
