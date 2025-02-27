@@ -19,7 +19,6 @@ const getContents = async (userId: string, userEmail: string) => {
 };
 const Page = async () => {
   const session = await getServerSession(authOptions);
-  console.log("session: ", session);
   if (!session) {
     redirect("/signin");
   }
