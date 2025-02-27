@@ -86,7 +86,7 @@ const SignIn: React.FC = () => {
               text="Login to your account"
               textSize="sm"
               fontWeight="medium"
-              backgroundColor="medium-gray"
+              className="text-white bg-gray-600 hover:bg-gray-700"
             />
             <p className="text-sm font-light text-gray-400">
               {`Don't have an account?`}

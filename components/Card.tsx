@@ -37,8 +37,11 @@ const Card: React.FC<CardProps> = ({ type }) => {
           ></iframe>
         </div>
       )}
-      {type === "Twitter" && <Tweet id="1894432786678743103" />}
-
+      {type === "Twitter" && (
+        <div className="overflow-auto">
+          <Tweet id="1894432786678743103" />
+        </div>
+      )}
       <p>Added on Feb 27 </p>
     </div>
   );

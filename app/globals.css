@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  ::-webkit-scrollbar{
+  @apply w-2 bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb{
+  @apply rounded-full bg-slate-300
+  }}
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
