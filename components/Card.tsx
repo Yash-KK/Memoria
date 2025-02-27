@@ -1,6 +1,6 @@
 "use client";
 import { embedYoutubeUrl } from "@/lib/utils";
-import { DeleteIcon, ShareIcon, TweetIcon } from "./icons";
+import { DeleteIcon, ShareIcon, TweetIcon, VideoIcon } from "./icons";
 import Label from "./ui/Label";
 import { Tweet } from "react-tweet";
 
@@ -10,13 +10,19 @@ type CardProps = {
   link: string;
 };
 const Card: React.FC<CardProps> = ({ title, type, link }) => {
-  const twitterId = type === "Twitter" && link.split('/').at(-1);
+  const twitterId = type === "Twitter" && link.split("/").at(-1);
   return (
-    <div className="flex m-5 bg-slate-200 flex-col max-w-sm rounded h-96 shadow-lg px-6 py-4">
+    <div className="flex m-5 bg-gray-800  hover:bg-gray-700 text-white flex-col max-w-sm rounded h-96 shadow-lg px-6 py-4">
       <div className="flex justify-between items-center">
         <div>
           <Label
-            onLeft={<TweetIcon />}
+            onLeft={
+              type === "Twitter" ? (
+                <TweetIcon className="m-2" />
+              ) : (
+                <VideoIcon className="m-2" />
+              )
+            }
             text={title}
             textSize="xl"
             fontWeight="bold"
@@ -24,7 +30,7 @@ const Card: React.FC<CardProps> = ({ title, type, link }) => {
         </div>
 
         <div className="flex items-center gap-x-2">
-          <ShareIcon />
+          <ShareIcon className="mr-2" />
           <DeleteIcon />
         </div>
       </div>
@@ -43,7 +49,7 @@ const Card: React.FC<CardProps> = ({ title, type, link }) => {
       )}
       {type === "Twitter" && (
         <div className="overflow-auto">
-          <Tweet id={twitterId || ''} />
+          <Tweet id={twitterId || ""} />
         </div>
       )}
       <p>Added on Feb 27 </p>

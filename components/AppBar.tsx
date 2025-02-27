@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { AddIcon, ShareIcon } from "./icons";
 import Button from "./ui/Button";
 import Label from "./ui/Label";
@@ -8,8 +8,13 @@ const AppBar = () => {
     alert("it works...");
   };
   return (
-    <div className="flex justify-between p-6">
-      <Label text="All Notes" textSize="4xl" fontWeight="bold" />
+    <div className="flex justify-between p-6 bg-gray-900">
+      <Label
+        text="All Notes"
+        textSize="4xl"
+        fontWeight="bold"
+        className="text-white"
+      />
       <div className="flex">
         <Button
           onClick={handleClick}
@@ -18,7 +23,7 @@ const AppBar = () => {
           type="button"
           textSize="lg"
           fontWeight="medium"
-          className="bg-gray-400 hover:bg-gray-600 mr-3"
+          className="text-white bg-gray-700 hover:bg-gray-600 mr-3"
         />
         <Button
           text="Add Content"
@@ -26,7 +31,7 @@ const AppBar = () => {
           type="button"
           textSize="lg"
           fontWeight="medium"
-          className="bg-gray-400 hover:bg-gray-600"
+          className="text-white bg-gray-700 hover:bg-gray-600"
         />
       </div>
     </div>

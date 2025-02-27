@@ -25,12 +25,11 @@ const Page = async () => {
   const contents = await getContents(session.user.id, session.user.email);
 
   return (
-    <div className="flex bg-slate-300">
+    <div className="flex bg-slate-900 text-white">
       <SideBar />
       <div>
         <AppBar />
         <div className="grid grid-cols-4 gap-4">
-          {/*   A loop to display all cards here */}
           {contents.length > 0 ? (
             contents.map((content) => (
               <Card
