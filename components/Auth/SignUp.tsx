@@ -125,7 +125,7 @@ const SignUp: React.FC = () => {
               text="Create an account"
               textSize="sm"
               fontWeight="medium"
-              backgroundColor="medium-gray"
+              className="text-white bg-gray-600 hover:bg-gray-700"
             />
             <p className="text-sm font-light text-gray-400">
               Already have an account?{" "}
