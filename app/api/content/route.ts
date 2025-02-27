@@ -7,7 +7,7 @@ import { prisma } from "@/lib/prisma";
 export async function GET(req: NextRequest) {
   const session = await getServerSession({ req, ...authOptions });
   if (!session) {
-    redirect("/signup");
+    redirect("/signin");
   }
 
   const contents = await prisma.content.findMany({
@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   const session = await getServerSession({ req, ...authOptions });
   if (!session) {
-    redirect("/signup");
+    redirect("/signin");
   }
   const { title, type, link } = await req.json();
   if (!title || !type || !link) {
