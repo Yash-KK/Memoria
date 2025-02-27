@@ -1,3 +1,4 @@
+"use client"
 import { AddIcon, ShareIcon } from "./icons";
 import Button from "./ui/Button";
 import Label from "./ui/Label";

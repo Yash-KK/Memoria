@@ -1,7 +1,7 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "./prisma";
-import { comparePasswod } from "./utils";
+import bcrypt from "bcrypt";
 const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
@@ -59,6 +59,7 @@ const authOptions: NextAuthOptions = {
       session.user.id = token.id;
       session.user.firstName = token.firstName;
       session.user.lastName = token.lastName;
+      session.user.email = token.email as string;
       return session;
     },
   },
@@ -66,3 +67,16 @@ const authOptions: NextAuthOptions = {
 };
 
 export default authOptions;
+
+export const hashPassword = async (password: string): Promise<string> => {
+  const hash: string = await bcrypt.hash(password, 10);
+  return hash;
+};
+
+export const comparePasswod = async (
+  password: string,
+  hash: string
+): Promise<boolean> => {
+  const isCorrect: boolean = await bcrypt.compare(password, hash);
+  return isCorrect;
+};

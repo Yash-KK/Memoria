@@ -1,3 +1,4 @@
+"use client";
 import Spinner from "./Spinner";
 import { FontWeightVariants, TextSizeVariants } from "./variants";
 

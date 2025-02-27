@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Label from "./ui/Label";
 import { LogoutIcon, MemoriaIcon, TweetIcon, VideoIcon } from "./icons";

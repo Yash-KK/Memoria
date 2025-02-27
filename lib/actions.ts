@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { SignUpSchema, SignUpType } from "@/lib/types/zod";
-import { hashPassword } from "@/lib/utils";
+import { hashPassword } from "./auth";
 
 export const signUpUser = async ({
   firstName,
