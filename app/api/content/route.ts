@@ -22,6 +22,7 @@ export async function GET(req: NextRequest) {
       title: true,
       type: true,
       link: true,
+      createdAt: true,
       user: {
         select: {
           id: true,
@@ -65,10 +66,11 @@ export async function POST(req: NextRequest) {
       message: "successfully added new content",
       body: newContent,
     });
-  } catch {
+  } catch (error) {
     return NextResponse.json({
       status: false,
       message: "failed to add new content",
+      error: error,
     });
   }
 }

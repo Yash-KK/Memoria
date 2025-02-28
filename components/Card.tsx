@@ -8,8 +8,9 @@ type CardProps = {
   type: "Youtube" | "Twitter";
   title: string;
   link: string;
+  createdAt: Date;
 };
-const Card: React.FC<CardProps> = ({ title, type, link }) => {
+const Card: React.FC<CardProps> = ({ title, type, link, createdAt }) => {
   const twitterId = type === "Twitter" && link.split("/").at(-1);
   return (
     <div className="flex m-5 bg-gray-800  hover:bg-gray-700 text-white flex-col max-w-sm rounded h-96 shadow-lg px-6 py-4">
@@ -52,7 +53,9 @@ const Card: React.FC<CardProps> = ({ title, type, link }) => {
           <Tweet id={twitterId || ""} />
         </div>
       )}
-      <p>Added on Feb 27 </p>
+      <p>
+        Added on <u className="font-medium">{createdAt.toDateString()}</u>{" "}
+      </p>
     </div>
   );
 };

@@ -4,10 +4,10 @@
 
 @layer base {
   ::-webkit-scrollbar{
-  @apply w-2 bg-transparent;
+  @apply w-1 bg-transparent;
   }
   ::-webkit-scrollbar-thumb{
-  @apply rounded-full bg-slate-300
+  @apply rounded-full bg-gray-700
   }}
 /* :root {
   --background: #ffffff;
