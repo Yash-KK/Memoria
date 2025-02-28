@@ -3,12 +3,14 @@ import React from "react";
 import Label from "./ui/Label";
 import { LogoutIcon, MemoriaIcon, TweetIcon, VideoIcon } from "./icons";
 import { signOut } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const SideBar = () => {
   return (
     <div className="flex flex-col min-h-screen w-full max-w-[20rem] bg-slate-800  p-5 shadow-2xl">
       <Label
         onLeft={<MemoriaIcon />}
+        onClick={() => redirect("/")}
         text="Memoria"
         textSize="6xl"
         fontWeight="semi-bold"

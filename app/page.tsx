@@ -27,7 +27,7 @@ const Page = async () => {
   return (
     <div className="flex bg-slate-900 text-white">
       <SideBar />
-      <div>
+      <div className="w-full">
         <AppBar />
         <div className="grid grid-cols-4 gap-4">
           {contents.length > 0 ? (
@@ -37,12 +37,13 @@ const Page = async () => {
                 title={content.title}
                 type={content.type}
                 link={content.link}
+                createdAt={content.createdAt}
               />
             ))
           ) : (
-            <>
+            <div className="flex">
               <p>Helo</p>
-            </>
+            </div>
           )}
         </div>
       </div>
