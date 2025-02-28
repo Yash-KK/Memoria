@@ -1,11 +1,7 @@
 "use client";
 
 const PlayGround: React.FC = () => {
-  return (
-    <>
-      <p>Hi</p>
-    </>
-  );
+  return <>Hi</>;
 };
 
 export default PlayGround;

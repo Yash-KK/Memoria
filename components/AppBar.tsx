@@ -3,7 +3,10 @@ import { AddIcon, ShareIcon } from "./icons";
 import Button from "./ui/Button";
 import Label from "./ui/Label";
 
-const AppBar = () => {
+type AppBarType = {
+  addContentHandler: () => void;
+};
+const AppBar: React.FC<AppBarType> = ({ addContentHandler }) => {
   const handleClick = () => {
     alert("it works...");
   };
@@ -26,6 +29,7 @@ const AppBar = () => {
           className="text-white bg-gray-700 hover:bg-gray-600 mr-3"
         />
         <Button
+          onClick={addContentHandler}
           text="Add Content"
           onLeft={<AddIcon className="mr-2" />}
           type="button"
