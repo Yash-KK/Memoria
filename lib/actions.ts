@@ -2,7 +2,9 @@
 
 import { prisma } from "@/lib/prisma";
 import { SignUpSchema, SignUpType } from "@/lib/types/zod";
-import { hashPassword } from "./auth";
+import authOptions, { hashPassword } from "./auth";
+import { ContentType } from "@prisma/client";
+import { getServerSession } from "next-auth";
 
 export const signUpUser = async ({
   firstName,
@@ -62,6 +64,47 @@ export const signUpUser = async ({
       message: "something went wrong",
       error: error,
       status: false,
+    };
+  }
+};
+
+type addContentActionType = {
+  title: string;
+  type: ContentType;
+  link: string;
+};
+export const addContentAction = async ({
+  title,
+  type,
+  link,
+}: addContentActionType) => {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return {
+      status: false,
+      message: "user not authenticated",
+    };
+  }
+
+  try {
+    const newContent = await prisma.content.create({
+      data: {
+        title: title,
+        type: type,
+        link: link,
+        userId: session.user.id,
+      },
+    });
+    return {
+      status: true,
+      message: "content added",
+      newContent,
+    };
+  } catch (error) {
+    return {
+      status: false,
+      message: "could not add content",
+      error: error,
     };
   }
 };

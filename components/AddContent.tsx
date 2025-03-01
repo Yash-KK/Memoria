@@ -6,16 +6,26 @@ import Label from "./ui/Label";
 import Dropdown from "./ui/Dropdown";
 import Button from "./ui/Button";
 import { CloseIcon } from "./icons";
+import { addContentAction } from "@/lib/actions";
+import { ContentType } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 type AddContentType = {
   handleDisplay: () => void;
 };
 const AddContent: React.FC<AddContentType> = ({ handleDisplay }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    title: string;
+    type: ContentType;
+    link: string;
+  }>({
     title: "",
-    type: "",
+    type: ContentType.Youtube,
     link: "",
   });
+  const [error, setError] = useState("");
+  const router = useRouter();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -24,18 +34,21 @@ const AddContent: React.FC<AddContentType> = ({ handleDisplay }) => {
       [name]: value,
     }));
   };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formData.type) {
-      alert("Type is Mandatory!");
+      setError("Type is Mandatory!");
       return;
     }
-    console.log(formData);
-    setFormData({
-      link: "",
-      type: "",
-      title: "",
-    });
+    const response = await addContentAction(formData);
+    console.log(response);
+
+    if (!response.status) {
+      setError(response.message);
+    } else {
+      handleDisplay();
+      router.refresh();
+    }
   };
   return (
     <div
@@ -93,11 +106,15 @@ const AddContent: React.FC<AddContentType> = ({ handleDisplay }) => {
                   onSelect={(option) => {
                     setFormData((prevState) => ({
                       ...prevState,
-                      type: option,
+                      type:
+                        option === "YouTube"
+                          ? ContentType.Youtube
+                          : ContentType.Twitter,
                     }));
                   }}
                 />
               </div>
+              {error && <div className="bg-red-500">{error}</div>}
               <Button
                 text="Submit"
                 textSize="lg"
