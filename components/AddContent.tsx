@@ -12,8 +12,12 @@ import { useRouter } from "next/navigation";
 
 type AddContentType = {
   handleDisplay: () => void;
+  handleAlert: () => void;
 };
-const AddContent: React.FC<AddContentType> = ({ handleDisplay }) => {
+const AddContent: React.FC<AddContentType> = ({
+  handleDisplay,
+  handleAlert,
+}) => {
   const [formData, setFormData] = useState<{
     title: string;
     type: ContentType;
@@ -47,6 +51,7 @@ const AddContent: React.FC<AddContentType> = ({ handleDisplay }) => {
       setError(response.message);
     } else {
       handleDisplay();
+      handleAlert();
       router.refresh();
     }
   };

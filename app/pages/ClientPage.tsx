@@ -3,7 +3,9 @@ import SideBar from "@/components/SideBar";
 import AppBar from "@/components/AppBar";
 import Card from "@/components/Card";
 import AddContent from "@/components/AddContent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Alert from "@/components/ui/Alert";
+import { CheckIcon } from "@/components/icons";
 
 type ContentType = {
   id: string;
@@ -17,9 +19,21 @@ type ClientPageProps = {
 };
 const ClientPage: React.FC<ClientPageProps> = ({ contents }) => {
   const [displayContentModal, setDisplayContentModal] = useState(false);
+  const [alert, setAlert] = useState(false);
 
+  useEffect(() => {
+    if (alert) {
+      const timeout = setTimeout(() => setAlert(false), 4000);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [alert]);
   const handleDisplayContentModal = () => {
     setDisplayContentModal((prev) => !prev);
+  };
+  const handleDisplayAlert = () => {
+    setAlert(true);
   };
   return (
     <div className="flex bg-slate-900 text-white">
@@ -43,9 +57,16 @@ const ClientPage: React.FC<ClientPageProps> = ({ contents }) => {
             </div>
           )}
         </div>
-
+        {alert && (
+          <div className="fixed bottom-4 right-4 z-50">
+            <Alert text="Content Added" iconLeft={<CheckIcon />} />
+          </div>
+        )}
         {displayContentModal && (
-          <AddContent handleDisplay={handleDisplayContentModal} />
+          <AddContent
+            handleDisplay={handleDisplayContentModal}
+            handleAlert={handleDisplayAlert}
+          />
         )}
       </div>
     </div>
