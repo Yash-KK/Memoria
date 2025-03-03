@@ -6,6 +6,7 @@ import AddContent from "@/components/AddContent";
 import { useEffect, useState } from "react";
 import Alert from "@/components/ui/Alert";
 import { CheckIcon } from "@/components/icons";
+import NoContent from "@/components/NoContent";
 
 type ContentType = {
   id: string;
@@ -36,7 +37,7 @@ const ClientPage: React.FC<ClientPageProps> = ({ contents }) => {
     setAlert(true);
   };
   return (
-    <div className="flex bg-slate-900 text-white">
+    <div className="flex bg-slate-900 text-white bg-white h-screen">
       <SideBar />
       <div className="w-full">
         <AppBar addContentHandler={handleDisplayContentModal} />
@@ -52,9 +53,7 @@ const ClientPage: React.FC<ClientPageProps> = ({ contents }) => {
               />
             ))
           ) : (
-            <div className="flex">
-              <p>Helo</p>
-            </div>
+            <NoContent />
           )}
         </div>
         {alert && (
