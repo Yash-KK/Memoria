@@ -37,7 +37,7 @@ const ClientPage: React.FC<ClientPageProps> = ({ contents }) => {
     setAlert(true);
   };
   return (
-    <div className="flex bg-slate-900 text-white bg-white h-screen">
+    <div className="flex bg-slate-900 text-white h-screen">
       <SideBar />
       <div className="w-full">
         <AppBar addContentHandler={handleDisplayContentModal} />
