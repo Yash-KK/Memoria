@@ -42,23 +42,24 @@ const ClientPage: React.FC<ClientPageProps> = ({ contents }) => {
       <div className="w-full">
         <AppBar addContentHandler={handleDisplayContentModal} />
         <div className="grid grid-cols-4 gap-4">
-          {contents.length > 0 ? (
-            contents.map((content) => (
-              <Card
-                key={content.id}
-                title={content.title}
-                type={content.type}
-                link={content.link}
-                createdAt={content.createdAt}
-              />
-            ))
-          ) : (
-            <NoContent />
-          )}
+          {contents.map((content) => (
+            <Card
+              key={content.id}
+              title={content.title}
+              type={content.type}
+              link={content.link}
+              createdAt={content.createdAt}
+            />
+          ))}
         </div>
         {alert && (
           <div className="fixed bottom-4 right-4 z-50">
             <Alert text="Content Added" iconLeft={<CheckIcon />} />
+          </div>
+        )}
+        {!contents.length && (
+          <div className="flex h-[calc(100%-6rem)] items-center justify-center">
+            <NoContent />
           </div>
         )}
         {displayContentModal && (
