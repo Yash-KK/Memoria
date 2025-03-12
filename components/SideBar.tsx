@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const SideBar = () => {
   return (
-    <div className="flex flex-col min-h-screen w-full max-w-[20rem] bg-slate-800  p-5 shadow-2xl">
+    <div className="flex flex-col hidden md:block h-screen w-full max-w-[20rem] bg-slate-800  p-5 shadow-2xl">
       <Label
         onLeft={<MemoriaIcon />}
         onClick={() => redirect("/")}

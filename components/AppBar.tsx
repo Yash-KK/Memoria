@@ -11,14 +11,14 @@ const AppBar: React.FC<AppBarType> = ({ addContentHandler }) => {
     alert("it works...");
   };
   return (
-    <div className="flex justify-between p-6 bg-gray-900">
+    <div className="flex justify-start lg:justify-between p-6 bg-gray-900">
       <Label
         text="All Notes"
         textSize="4xl"
         fontWeight="bold"
         className="text-white"
       />
-      <div className="flex">
+      <div className="hidden lg:flex">
         <Button
           onClick={handleClick}
           onLeft={<ShareIcon className="mr-2" />}
