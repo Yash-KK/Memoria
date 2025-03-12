@@ -37,11 +37,11 @@ const ClientPage: React.FC<ClientPageProps> = ({ contents }) => {
     setAlert(true);
   };
   return (
-    <div className="flex bg-slate-900 text-white h-screen">
+    <div className="flex bg-slate-900 text-white min-h-screen">
       <SideBar />
       <div className="w-full">
         <AppBar addContentHandler={handleDisplayContentModal} />
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {contents.map((content) => (
             <Card
               key={content.id}
