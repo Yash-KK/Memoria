@@ -9,15 +9,12 @@ import { CloseIcon } from "./icons";
 import { addContentAction } from "@/lib/actions";
 import { ContentType } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import { toastMessage } from "@/lib/utils";
 
 type AddContentType = {
   handleDisplay: () => void;
-  handleAlert: () => void;
 };
-const AddContent: React.FC<AddContentType> = ({
-  handleDisplay,
-  handleAlert,
-}) => {
+const AddContent: React.FC<AddContentType> = ({ handleDisplay }) => {
   const [formData, setFormData] = useState<{
     title: string;
     type: ContentType;
@@ -50,8 +47,8 @@ const AddContent: React.FC<AddContentType> = ({
     if (!response.status) {
       setError(response.message);
     } else {
+      toastMessage(response.message);
       handleDisplay();
-      handleAlert();
       router.refresh();
     }
   };

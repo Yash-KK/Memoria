@@ -14,6 +14,7 @@ const SignIn: React.FC = () => {
     email: "",
     password: "",
   });
+  const [loading, setloading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -25,6 +26,8 @@ const SignIn: React.FC = () => {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setloading(true);
+
     const response = await signIn("credentials", {
       ...formData,
       redirect: false,
@@ -82,6 +85,7 @@ const SignIn: React.FC = () => {
               <div className="flex items-end text-red-500">{error}</div>
             )}
             <Button
+              loading={loading}
               type="submit"
               text="Login to your account"
               textSize="sm"

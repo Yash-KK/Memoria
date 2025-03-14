@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Bubblegum_Sans } from "next/font/google";
+import { Toaster } from "react-hot-toast";
+
 import "./globals.css";
 import Provider from "./Provider";
 
@@ -34,7 +36,10 @@ export default function RootLayout({
       <body
         className={`bg-gray-900 ${geistSans.variable} ${geistMono.variable} ${bubblegumSans.variable} antialiased`}
       >
-        <Provider>{children}</Provider>
+        <Provider>
+          <Toaster position="bottom-right" reverseOrder={true} />
+          {children}
+        </Provider>
       </body>
     </html>
   );

@@ -108,3 +108,30 @@ export const addContentAction = async ({
     };
   }
 };
+export const deleteContent = async (contentId: string) => {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return {
+      status: false,
+      message: "user not authenticated",
+    };
+  }
+
+  try {
+    await prisma.content.delete({
+      where: {
+        id: contentId,
+      },
+    });
+    return {
+      status: true,
+      message: "content deleted",
+    };
+  } catch (error) {
+    return {
+      status: false,
+      message: "could not add content",
+      error: error,
+    };
+  }
+};
