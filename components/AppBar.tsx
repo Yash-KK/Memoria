@@ -1,5 +1,6 @@
 "use client";
-import { AddIcon, ShareIcon } from "./icons";
+import { signOut } from "next-auth/react";
+import { AddIcon, LogoutIcon, ShareIcon } from "./icons";
 import Button from "./ui/Button";
 import Label from "./ui/Label";
 
@@ -11,7 +12,7 @@ const AppBar: React.FC<AppBarType> = ({ addContentHandler }) => {
     alert("it works...");
   };
   return (
-    <div className="flex justify-start lg:justify-between p-6 bg-gray-900">
+    <div className="flex lg:justify-between p-6 bg-gray-900">
       <Label
         text="All Notes"
         textSize="4xl"
@@ -36,6 +37,16 @@ const AppBar: React.FC<AppBarType> = ({ addContentHandler }) => {
           textSize="lg"
           fontWeight="medium"
           className="text-white bg-gray-700 hover:bg-gray-600"
+        />
+      </div>
+      <div className="flex sm:hidden justify-end w-full">
+        <Label
+          onLeft={<LogoutIcon className="mr-3" />}
+          onClick={() => signOut()}
+          text="Logout"
+          textSize="2xl"
+          fontWeight="medium"
+          className="text-white mb-4 cursor-pointer hover:font-bold"
         />
       </div>
     </div>
