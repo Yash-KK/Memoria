@@ -33,6 +33,7 @@ const SignIn: React.FC = () => {
       redirect: false,
     });
     if (response?.error) {
+      setloading(false);
       setError(response.error);
     } else {
       redirect("/");
